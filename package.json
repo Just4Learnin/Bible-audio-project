@@ -1,0 +1,12 @@
+{
+  "name": "Bible-audio-project",
+  "version": "1.0.0",
+  "description": "Continuous Bible audio player with chapter display.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "electron": "^33.0.0"
+  }
+}

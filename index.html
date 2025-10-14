@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>✝️Bible Audio Player ✝️</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      font-family: 'Courier New', monospace;
+      overflow: hidden;
+    }
+
+    body {
+      background-image: url('./lamb.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-color: #1a1a2e;
+      color: #ffffff;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      position: fixed;
+      width: 450px;
+      height: 450px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.9);
+      border: 4px solid #850694;
+      box-shadow: 0 0 50px rgba(255, 105, 180, 0.8), inset 0 0 20px rgba(255, 105, 180, 0.2);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: grab;
+      overflow: hidden;
+      padding: 20px;
+    }
+
+    .container:active {
+      cursor: grabbing;
+    }
+
+    .container-inner {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow-y: auto;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 20px;
+      color: #ff69b4;
+      text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    .player {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .cover {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1a1a1a, #333333);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #ff69b4;
+      font-size: 32px;
+      box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+      margin: 0 auto 10px;
+    }
+
+    .now {
+      font-size: 14px;
+      color: #b57ede;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+
+    .sub {
+      font-size: 11px;
+      color: #cccccc;
+      margin-bottom: 10px;
+      max-width: 300px;
+    }
+
+    .controls {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      background: #ff69b4;
+      color: #000000;
+      border: 2px solid #ffffff;
+      padding: 8px 14px;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 11px;
+    }
+
+    button:hover {
+      background: #000000;
+      color: #ff69b4;
+      border-color: #ff69b4;
+      box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+    }
+
+    button:active {
+      transform: translateY(2px);
+    }
+
+    .toggle-btn {
+      background: linear-gradient(135deg, #ff69b4, #ff1493);
+      margin-bottom: 12px;
+      padding: 8px 16px;
+    }
+
+    .controls-section {
+      max-height: 500px;
+      overflow-y: auto;
+      transition: max-height 0.4s ease, opacity 0.4s ease;
+      opacity: 1;
+      width: 100%;
+      text-align: center;
+    }
+
+    .controls-section.collapsed {
+      max-height: 0;
+      opacity: 0;
+    }
+
+    .top-actions {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .top-actions button {
+      font-size: 10px;
+      padding: 6px 10px;
+    }
+
+    .volume-section {
+      margin-bottom: 12px;
+      padding: 8px;
+      background: rgba(255, 105, 180, 0.1);
+      border-radius: 6px;
+      border-left: 3px solid #ff69b4;
+    }
+
+    .volume-section label {
+      color: #ff69b4;
+      font-size: 11px;
+      font-weight: bold;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .volume {
+      width: 150px;
+      height: 6px;
+      cursor: pointer;
+    }
+
+    .playlist {
+      max-height: 200px;
+      overflow-y: auto;
+      background: rgba(26, 26, 46, 0.8);
+      padding: 8px;
+      border-radius: 6px;
+      border: 2px solid #ff69b4;
+      width: 100%;
+      font-size: 10px;
+    }
+
+    .playlist .item {
+      padding: 6px;
+      border-radius: 4px;
+      color: #ddd;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 3px;
+    }
+
+    .playlist .item:hover {
+      background: rgba(255, 105, 180, 0.15);
+    }
+
+    .playlist .item.playing {
+      background: linear-gradient(90deg, rgba(181, 126, 220, 0.4), rgba(255, 105, 180, 0.25));
+      color: #ff69b4;
+      font-weight: 600;
+      border-left: 3px solid #ff69b4;
+      padding-left: 3px;
+    }
+
+    .file-input {
+      display: none;
+    }
+
+    #startOverlay {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.95));
+      z-index: 999;
+    }
+
+    #startOverlay .card {
+      padding: 40px;
+      border-radius: 12px;
+      text-align: center;
+      background: linear-gradient(180deg, #120814, #0b0610);
+      box-shadow: 0 0 50px rgba(255, 105, 180, 0.6);
+      max-width: 500px;
+    }
+
+    #startOverlay h2 {
+      color: #ff69b4;
+      margin-bottom: 15px;
+      font-size: 24px;
+    }
+
+    #startOverlay p {
+      color: #ddd;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    #startOverlay button {
+      margin-top: 20px;
+      padding: 12px 30px;
+    }
+
+    .muted-note {
+      font-size: 12px;
+      color: #aaa;
+      margin-top: 15px;
+    }
+
+    .playlist::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .playlist::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 3px;
+    }
+
+    .playlist::-webkit-scrollbar-thumb {
+      background: #ff69b4;
+      border-radius: 3px;
+    }
+
+    .playlist::-webkit-scrollbar-thumb:hover {
+      background: #ff1493;
+    }
+
+    .drag-handle {
+      width: 100%;
+      height: 10px;
+      cursor: grab;
+      position: absolute;
+      top: 0;
+    }
+
+    .drag-handle:active {
+      cursor: grabbing;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="container">
+    <div class="drag-handle"></div>
+    <div class="container-inner">
+      <h1>🖤 BIBLE 🖤</h1>
+
+      <div class="player">
+        <div class="cover" id="cover">🎵</div>
+        <div class="now" id="nowPlaying">Now Playing: --</div>
+        <div class="sub" id="bookChapter">–</div>
+        <div class="controls">
+          <button id="prevBtn">⏮ Prev</button>
+          <button id="playPauseBtn">▶ Play</button>
+          <button id="nextBtn">Next ⏭</button>
+        </div>
+      </div>
+
+      <button class="toggle-btn" id="toggleControls">📂 Menu</button>
+
+      <div class="controls-section" id="controlsSection">
+        <div class="top-actions">
+          <label style="display:inline-block;">
+            <button id="chooseFilesBtn">Load</button>
+            <input type="file" id="fileInput" class="file-input" multiple accept="audio/*">
+          </label>
+          <button id="loadManifestBtn">Reload</button>
+          <button id="loopToggle">Loop: On</button>
+        </div>
+
+        <div class="volume-section">
+          <label for="volume">Volume</label>
+          <input id="volume" class="volume" type="range" min="0" max="100" value="70">
+        </div>
+
+        <div class="playlist" id="playlist"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="startOverlay">
+    <div class="card">
+      <h2>Click to Start</h2>
+      <p>Click to allow background Bible audio playback.</p>
+      <button id="startBtn">Start Playing</button>
+      <div class="muted-note">💡 Drag the circle to move it • Collapse menu to see background • Space = play/pause</div>
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+  <script>
+    const container = document.getElementById('container');
+    const toggleBtn = document.getElementById('toggleControls');
+    const controlsSection = document.getElementById('controlsSection');
+
+    let isDragging = false;
+    let currentX;
+    let currentY;
+    let initialX;
+    let initialY;
+
+    // Dragging functionality
+    container.addEventListener('mousedown', (e) => {
+      if (e.target.id === 'container' || e.target.className === 'drag-handle') {
+        isDragging = true;
+        initialX = e.clientX - container.offsetLeft;
+        initialY = e.clientY - container.offsetTop;
+      }
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (isDragging) {
+        currentX = e.clientX - initialX;
+        currentY = e.clientY - initialY;
+        container.style.left = currentX + 'px';
+        container.style.top = currentY + 'px';
+        container.style.transform = 'none';
+      }
+    });
+
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+    });
+
+    // Toggle controls
+    toggleBtn.addEventListener('click', () => {
+      controlsSection.classList.toggle('collapsed');
+      toggleBtn.textContent = controlsSection.classList.contains('collapsed') 
+        ? '📂 Menu' 
+        : '📁 Close';
+    });
+
+    // Start with controls collapsed
+    controlsSection.classList.add('collapsed');
+  </script>
+</body>
+</html>
