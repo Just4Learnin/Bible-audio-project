@@ -369,37 +369,39 @@
   <script src="renderer.js"></script>
   <script>
     const container = document.getElementById('container');
-    const toggleBtn = document.getElementById('toggleControls');
-    const controlsSection = document.getElementById('controlsSection');
+const toggleBtn = document.getElementById('toggleControls');
+const controlsSection = document.getElementById('controlsSection');
 
-    let isDragging = false;
-    let currentX;
-    let currentY;
-    let initialX;
-    let initialY;
+let isDragging = false;
+let startX, startY, offsetX, offsetY;
 
-    // Dragging functionality
-    container.addEventListener('mousedown', (e) => {
-      if (e.target.id === 'container' || e.target.className === 'drag-handle') {
-        isDragging = true;
-        initialX = e.clientX - container.offsetLeft;
-        initialY = e.clientY - container.offsetTop;
-      }
-    });
+container.addEventListener('mousedown', (e) => {
+  // Only start dragging if you click the container background or drag handle
+  if (e.target.id === 'container' || e.target.classList.contains('drag-handle')) {
+    isDragging = true;
+    const rect = container.getBoundingClientRect();
+    startX = e.clientX;
+    startY = e.clientY;
+    offsetX = rect.left;
+    offsetY = rect.top;
+    container.style.transition = 'none';
+  }
+});
 
-    document.addEventListener('mousemove', (e) => {
-      if (isDragging) {
-        currentX = e.clientX - initialX;
-        currentY = e.clientY - initialY;
-        container.style.left = currentX + 'px';
-        container.style.top = currentY + 'px';
-        container.style.transform = 'none';
-      }
-    });
+document.addEventListener('mousemove', (e) => {
+  if (!isDragging) return;
+  const dx = e.clientX - startX;
+  const dy = e.clientY - startY;
+  container.style.left = offsetX + dx + 'px';
+  container.style.top = offsetY + dy + 'px';
+  container.style.transform = 'translate(0, 0)'; // cancel centering transform
+});
 
-    document.addEventListener('mouseup', () => {
-      isDragging = false;
-    });
+document.addEventListener('mouseup', () => {
+  isDragging = false;
+  container.style.transition = '';
+});
+
 
     // Toggle controls
     toggleBtn.addEventListener('click', () => {
