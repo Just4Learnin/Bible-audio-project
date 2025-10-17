@@ -1,278 +1,149 @@
-/* renderer.js - Updated with auto-play on startup */
-
 (() => {
-  // UI elements
-  const startOverlay = document.getElementById('startOverlay');
-  const startBtn = document.getElementById('startBtn');
-  const chooseFilesBtn = document.getElementById('chooseFilesBtn');
-  const fileInput = document.getElementById('fileInput');
-  const loadManifestBtn = document.getElementById('loadManifestBtn');
-  const nowPlayingEl = document.getElementById('nowPlaying');
-  const bookChapterEl = document.getElementById('bookChapter');
-  const playlistEl = document.getElementById('playlist');
-  const playPauseBtn = document.getElementById('playPauseBtn');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  const loopToggle = document.getElementById('loopToggle');
-  const volumeSlider = document.getElementById('volume');
-
-  // Audio element
   const audio = new Audio();
   audio.preload = 'auto';
   audio.crossOrigin = 'anonymous';
 
-  // State
+  const lyricsScroll = document.getElementById('lyricsScroll');
+  const container = document.getElementById('container');
+  const collapseBtn = document.getElementById('collapseBtn');
+  const nowPlaying = document.getElementById('nowPlaying');
+  const bookChapter = document.getElementById('bookChapter');
+  const playPauseBtn = document.getElementById('playPauseBtn');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const loopToggle = document.getElementById('loopToggle');
+  const chooseFilesBtn = document.getElementById('chooseFilesBtn');
+  const fileInput = document.getElementById('fileInput');
+  const loadManifestBtn = document.getElementById('loadManifestBtn');
+  const volumeSlider = document.getElementById('volume');
+  const startOverlay = document.getElementById('startOverlay');
+  const startBtn = document.getElementById('startBtn');
+  const playlistEl = document.getElementById('playlist');
+  const toggleBtn = document.getElementById('toggleControls');
+  const controlsSection = document.getElementById('controlsSection');
+
   let playlist = [];
   let index = 0;
   let isPlaying = false;
   let loopEnabled = true;
+  let verses = [];
+  let currentVerseIndex = 0;
+  let isCollapsed = false;
 
-  // Parse filename to extract book & chapter
-  function parseFilename(filename) {
-    const base = filename.split('/').pop();
-    const name = base.replace(/\.[^/.]+$/, "");
-    const match = name.match(/^A(\d+)_+(\d+)_+([A-Za-z0-9]+)_*/);
-    if (match) {
-      const bookRaw = match[3].replace(/_/g, ' ');
-      const chapter = parseInt(match[2], 10);
-      return {
-        book: bookRaw,
-        chapter: chapter,
-        title: `${bookRaw} ${chapter}`
-      };
-    }
-    const tokens = name.split(/[_\- ]+/).filter(Boolean);
-    if (tokens.length >= 2) {
-      return { 
-        book: tokens.slice(2).join(' '), 
-        chapter: tokens[1], 
-        title: tokens.slice(2).join(' ') + " " + tokens[1] 
-      };
-    }
-    return { book: name, chapter: '', title: name };
-  }
+  // 🎯 Make player draggable
+  let dragging = false, offsetX = 0, offsetY = 0;
+  container.addEventListener('mousedown', e => {
+    if (e.target.closest('button')) return;
+    dragging = true;
+    offsetX = e.clientX - container.offsetLeft;
+    offsetY = e.clientY - container.offsetTop;
+    container.style.transition = 'none';
+  });
+  document.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    container.style.left = `${e.clientX - offsetX}px`;
+    container.style.top = `${e.clientY - offsetY}px`;
+  });
+  document.addEventListener('mouseup', () => dragging = false);
 
-  function renderPlaylistUI() {
-    playlistEl.innerHTML = '';
-    playlist.forEach((item, i) => {
-      const div = document.createElement('div');
-      div.className = 'item' + (i === index ? ' playing' : '');
-      div.innerHTML = `<div>${i+1}. ${item.title}</div><div style="opacity:.7">${item.filename}</div>`;
-      div.addEventListener('click', () => {
-        index = i;
-        loadIndex(index);
-        play();
-        updateUI();
-      });
-      playlistEl.appendChild(div);
-    });
-  }
+  // Collapse toggle
+  collapseBtn.addEventListener('click', () => {
+    isCollapsed = !isCollapsed;
+    container.classList.toggle('collapsed', isCollapsed);
+  });
 
-  function updateNowPlayingUI() {
-    if (!playlist.length) {
-      nowPlayingEl.textContent = 'Now Playing: –';
-      bookChapterEl.textContent = '';
-      return;
-    }
-    const cur = playlist[index];
-    nowPlayingEl.textContent = `Now Playing: ${cur.title}`;
-    bookChapterEl.textContent = `${cur.book} ${cur.chapter || ''}`.trim();
+  function parseFilename(name) {
+    const base = name.replace(/\.[^/.]+$/, '');
+    const parts = base.split(/[_\- ]+/);
+    return { book: parts[0] || 'Book', chapter: parts[1] || '1', title: `${parts[0]} ${parts[1]}` };
   }
 
   function updateUI() {
-    updateNowPlayingUI();
-    renderPlaylistUI();
-    playPauseBtn.textContent = isPlaying ? '⸝ Pause' : '▶ Play';
-    playPauseBtn.setAttribute('data-playing', isPlaying ? 'true' : 'false');
+    if (!playlist.length) return;
+    const track = playlist[index];
+    nowPlaying.textContent = `Now Playing: ${track.title}`;
+    bookChapter.textContent = `${track.book} ${track.chapter}`;
+    playPauseBtn.textContent = isPlaying ? '⏸ Pause' : '▶ Play';
     loopToggle.textContent = `Loop: ${loopEnabled ? 'On' : 'Off'}`;
   }
 
-  // Playback controls
-  function loadIndex(i) {
-    if (!playlist[i]) return;
-    audio.src = playlist[i].src;
-    audio.load();
-    updateNowPlayingUI();
-  }
-
-  function play() {
-    if (!playlist.length) return;
-    audio.play().catch(err => {
-      console.warn('Play blocked by autoplay policy', err);
-    });
-    isPlaying = true;
-    updateUI();
-  }
-
-  function pause() {
-    audio.pause();
-    isPlaying = false;
-    updateUI();
-  }
-
-  function next() {
-    if (!playlist.length) return;
-    index++;
-    if (index >= playlist.length) {
-      if (loopEnabled) index = 0;
-      else { index = playlist.length - 1; pause(); return; }
-    }
-    loadIndex(index);
-    if (isPlaying) play();
-    updateUI();
-  }
-
-  function prev() {
-    if (!playlist.length) return;
-    index--;
-    if (index < 0) {
-      if (loopEnabled) index = playlist.length - 1;
-      else { index = 0; pause(); return; }
-    }
-    loadIndex(index);
-    if (isPlaying) play();
-    updateUI();
-  }
-
-  // Audio events
-  audio.addEventListener('ended', () => {
-    setTimeout(() => next(), 150);
-  });
-
-  audio.addEventListener('play', () => { isPlaying = true; updateUI(); });
-  audio.addEventListener('pause', () => { isPlaying = false; updateUI(); });
-  audio.addEventListener('volumechange', () => { volumeSlider.value = Math.round(audio.volume * 100); });
-
-  // Volume control
-  volumeSlider.addEventListener('input', (e) => {
-    audio.volume = (Number(e.target.value) || 70) / 100;
-  });
-
-  // Button controls
-  playPauseBtn.addEventListener('click', () => {
-    if (isPlaying) pause(); else play();
-  });
-  nextBtn.addEventListener('click', next);
-  prevBtn.addEventListener('click', prev);
-  loopToggle.addEventListener('click', () => {
-    loopEnabled = !loopEnabled;
-    updateUI();
-  });
-
-  // Keyboard shortcuts
-  window.addEventListener('keydown', (ev) => {
-    if (ev.code === 'Space') { ev.preventDefault(); if (isPlaying) pause(); else play(); }
-    if (ev.key === 'ArrowRight') next();
-    if (ev.key === 'ArrowLeft') prev();
-  });
-
-  // Load playlist.json from server
-  async function tryLoadManifest() {
-    const manifestUrl = 'audio/playlist.json';
+  async function loadBibleText(book, chapter) {
+    const path = `./audio_text/${book}_${chapter}.txt`;
     try {
-      const r = await fetch(manifestUrl, { cache: 'no-store' });
-      if (!r.ok) throw new Error('no manifest');
-      const list = await r.json();
-      playlist = list.map(fn => {
-        const filename = fn.split('/').pop();
-        const meta = parseFilename(filename);
-        return { src: `audio/${fn}`, filename, ...meta };
-      });
-      playlist.sort((a, b) => a.filename.localeCompare(b.filename, undefined, { numeric: true }));
-      index = 0;
-      loadIndex(index);
-      renderPlaylistUI();
-      updateUI();
-      return true;
-    } catch (err) {
-      console.warn('No server manifest found:', err);
-      return false;
+      const res = await fetch(path);
+      const text = await res.text();
+      verses = text.split('\n').filter(v => v.trim());
+      lyricsScroll.innerHTML = verses.map(v => `<div class="lyrics-line">${v}</div>`).join('');
+    } catch {
+      verses = [];
+      lyricsScroll.innerHTML = '<div style="opacity:0.4;">No text found</div>';
     }
   }
 
-  // Local file input
-  fileInput.addEventListener('change', (ev) => {
-    const files = Array.from(ev.target.files).filter(f => 
-      f.type.startsWith('audio/') || f.name.match(/\.(mp3|wav|ogg|m4a)$/i)
-    );
-    if (!files.length) return;
-    
-    files.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
-    playlist = files.map(f => {
-      const url = URL.createObjectURL(f);
-      const meta = parseFilename(f.name);
-      return { src: url, filename: f.name, ...meta };
-    });
-    
-    index = 0;
-    loadIndex(index);
-    play();
-    renderPlaylistUI();
+  function syncLyrics() {
+    if (!verses.length || !audio.duration) return;
+    const lines = lyricsScroll.querySelectorAll('.lyrics-line');
+    const t = audio.currentTime / audio.duration;
+    const idx = Math.floor(t * lines.length);
+    if (idx !== currentVerseIndex) {
+      lines.forEach((l, i) => l.classList.toggle('active', i === idx));
+      const active = lines[idx];
+      if (active) {
+        active.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      currentVerseIndex = idx;
+    }
+  }
+
+  function loadTrack(i) {
+    const t = playlist[i];
+    audio.src = t.src;
+    audio.load();
+    loadBibleText(t.book, t.chapter);
     updateUI();
-  });
+  }
 
-  chooseFilesBtn.addEventListener('click', () => fileInput.click());
+  function play() { audio.play(); isPlaying = true; updateUI(); }
+  function pause() { audio.pause(); isPlaying = false; updateUI(); }
+  function next() { index = (index + 1) % playlist.length; loadTrack(index); play(); }
+  function prev() { index = (index - 1 + playlist.length) % playlist.length; loadTrack(index); play(); }
 
-  // Load manifest button
-  loadManifestBtn.addEventListener('click', async () => {
+  playPauseBtn.onclick = () => (isPlaying ? pause() : play());
+  nextBtn.onclick = next;
+  prevBtn.onclick = prev;
+  loopToggle.onclick = () => { loopEnabled = !loopEnabled; updateUI(); };
+  volumeSlider.oninput = e => audio.volume = e.target.value / 100;
+
+  audio.addEventListener('timeupdate', syncLyrics);
+  audio.addEventListener('ended', () => loopEnabled ? next() : pause());
+
+  async function tryLoadManifest() {
+    try {
+      const res = await fetch('audio/playlist.json');
+      const files = await res.json();
+      playlist = files.map(f => ({ src: `audio/${f}`, ...parseFilename(f) }));
+      loadTrack(0);
+      return true;
+    } catch { return false; }
+  }
+
+  fileInput.onchange = e => {
+    const files = Array.from(e.target.files);
+    playlist = files.map(f => ({ src: URL.createObjectURL(f), ...parseFilename(f.name) }));
+    index = 0; loadTrack(0); play();
+  };
+  chooseFilesBtn.onclick = () => fileInput.click();
+
+  startBtn.onclick = async () => {
     const ok = await tryLoadManifest();
-    if (!ok) {
-      alert('Could not load audio/playlist.json. Use "Load Local Audio Files" instead.');
-    } else {
-      play();
-    }
-  });
-
-  // Start button - tries manifest first, then prompts user
-  startBtn.addEventListener('click', async () => {
-    audio.volume = Number(volumeSlider.value || 70) / 100;
-
-    // Try to load manifest automatically
-    const manifestLoaded = await tryLoadManifest();
-    
-    if (manifestLoaded && playlist.length > 0) {
-      // Auto-play from manifest
-      index = 0;
-      loadIndex(index);
-      try { 
-        await audio.play(); 
-        isPlaying = true; 
-      } catch(e) { 
-        console.warn('Autoplay blocked', e); 
-      }
-      updateUI();
-      startOverlay.style.display = 'none';
-    } else {
-      // No manifest - tell user to load files
-      startOverlay.style.display = 'none';
-      alert('No audio files loaded. Click "Load Local Audio Files" to select your Bible audio folder.');
-    }
-  });
-
-  // Global API
-  window.BibleAudioPlayer = {
-    setPlaylist: (arr) => {
-      if (!arr || !arr.length) return;
-      if (typeof arr[0] === 'string') {
-        playlist = arr.map(p => {
-          const filename = p.split('/').pop();
-          const meta = parseFilename(filename);
-          return { src: p, filename, ...meta };
-        });
-      } else {
-        const files = arr;
-        files.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
-        playlist = files.map(f => {
-          return { src: URL.createObjectURL(f), filename: f.name, ...parseFilename(f.name) };
-        });
-      }
-      index = 0;
-      loadIndex(index);
-      renderPlaylistUI();
-      updateUI();
-    }
+    startOverlay.style.display = 'none';
+    if (ok) play();
   };
 
-  // Initial UI
+  toggleBtn.onclick = () => {
+    controlsSection.classList.toggle('collapsed');
+    toggleBtn.textContent = controlsSection.classList.contains('collapsed') ? '📂 Menu' : '📁 Close';
+  };
+
   updateUI();
 })();
