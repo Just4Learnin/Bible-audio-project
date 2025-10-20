@@ -125,3 +125,36 @@
     }
   }
 })();
+
+  // 🖱️ Make the player draggable
+  let isDragging = false;
+  let offsetX, offsetY;
+
+  container.addEventListener('mousedown', (e) => {
+    // Prevent dragging if user clicks a button, slider, or input
+    if (['BUTTON', 'INPUT', 'LABEL'].includes(e.target.tagName)) return;
+
+    isDragging = true;
+    container.style.transition = 'none';
+    const rect = container.getBoundingClientRect();
+    offsetX = e.clientX - rect.left;
+    offsetY = e.clientY - rect.top;
+    container.style.cursor = 'grabbing';
+  });
+
+  document.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    const x = e.clientX - offsetX;
+    const y = e.clientY - offsetY;
+    container.style.left = `${x + container.offsetWidth / 2}px`;
+    container.style.top = `${y + container.offsetHeight / 2}px`;
+    container.style.transform = `translate(-50%, -50%)`; // keep center-based layout
+  });
+
+  document.addEventListener('mouseup', () => {
+    if (!isDragging) return;
+    isDragging = false;
+    container.style.transition = 'all 0.4s ease';
+    container.style.cursor = 'grab';
+  });
+
