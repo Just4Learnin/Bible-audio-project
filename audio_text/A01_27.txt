@@ -1,35 +1,46 @@
-1. Then Jacob went on his journey, and came to the land of the children of the east.
-2. And he looked, and, behold, a well in the field, and, lo, three flocks of sheep lying there by it; for out of that well they watered the flocks: and the stone upon the well's mouth was great.
-3. And thither were all the flocks gathered: and they rolled the stone from the well's mouth, and watered the sheep, and put the stone again upon the well's mouth in its place.
-4. And Jacob said unto them, My brethren, whence are ye? And they said, Of Haran are we.
-5. And he said unto them, Know ye Laban the son of Nahor? And they said, We know him.
-6. And he said unto them, Is it well with him? And they said, It is well: and, behold, Rachel his daughter cometh with the sheep.
-7. And he said, Lo, it is yet high day, neither is it time that the cattle should be gathered together: water ye the sheep, and go and feed them.
-8. And they said, We cannot, until all the flocks be gathered together, and they roll the stone from the well's mouth; then we water the sheep.
-9. While he was yet speaking with them, Rachel came with her father's sheep; for she kept them.
-10. And it came to pass, when Jacob saw Rachel the daughter of Laban his mother's brother, and the sheep of Laban his mother's brother, that Jacob went near, and rolled the stone from the well's mouth, and watered the flock of Laban his mother's brother.
-11. And Jacob kissed Rachel, and lifted up his voice, and wept.
-12. And Jacob told Rachel that he was her father's brother, and that he was Rebekah's son: and she ran and told her father.
-13. And it came to pass, when Laban heard the tidings of Jacob his sister's son, that he ran to meet him, and embraced him, and kissed him, and brought him to his house. And he told Laban all these things.
-14. And Laban said to him, Surely thou art my bone and my flesh. And he abode with him the space of a month.
-15. And Laban said unto Jacob, Because thou art my brother, shouldest thou therefore serve me for nought? tell me, what shall thy wages be?
-16. And Laban had two daughters: the name of the elder was Leah, and the name of the younger was Rachel.
-17. And Leah's eyes were tender; but Rachel was beautiful and well-favored.
-18. And Jacob loved Rachel; and he said, I will serve thee seven years for Rachel thy younger daughter.
-19. And Laban said, It is better that I give her to thee, than that I should give her to another man: abide with me.
-20. And Jacob served seven years for Rachel; and they seemed unto him but a few days, for the love he had to her.
-21. And Jacob said unto Laban, Give me my wife, for my days are fulfilled, that I may go in unto her.
-22. And Laban gathered together all the men of the place, and made a feast.
-23. And it came to pass in the evening, that he took Leah his daughter, and brought her to him; and he went in unto her.
-24. And Laban gave Zilpah his handmaid unto his daughter Leah for a handmaid.
-25. And it came to pass in the morning that, behold, it was Leah: and he said to Laban, What is this thou hast done unto me? did not I serve with thee for Rachel? wherefore then hast thou beguiled me?
-26. And Laban said, It is not so done in our place, to give the younger before the first-born.
-27. Fulfil the week of this one, and we will give thee the other also for the service which thou shalt serve with me yet seven other years.
-28. And Jacob did so, and fulfilled her week: and he gave him Rachel his daughter to wife.
-29. And Laban gave to Rachel his daughter Bilhah his handmaid to be her handmaid.
-30. And he went in also unto Rachel, and he loved also Rachel more than Leah, and served with him yet seven other years.
-31. And Jehovah saw that Leah was hated, and he opened her womb: but Rachel was barren.
-32. And Leah conceived, and bare a son, and she called his name Reuben: for she said, Because Jehovah hath looked upon my affliction; for now my husband will love me.
-33. And she conceived again, and bare a son: and said, Because Jehovah hath heard that I am hated, he hath therefore given me this [son] also: and she called his name Simeon.
-34. And she conceived again, and bare a son; and said, Now this time will my husband be joined unto me, because I have borne him three sons: therefore was his name called Levi.
-35. And she conceived again, and bare a son: and she said, This time will I praise Jehovah: therefore she called his name Judah; and she left off bearing.
+1 When Isaac was old and his eyes were dim so that he could not see, he called Esau his older son and said to him, “My son”; and he answered, “Here I am.”
+2 He said, “Behold, I am old; I do not know the day of my death.
+3 Now then, take your weapons, your quiver and your bow, and go out to the field and hunt game for me,
+4 and prepare for me delicious food, such as I love, and bring it to me so that I may eat, that my soul may bless you before I die.”
+5 Now Rebekah was listening when Isaac spoke to his son Esau. So when Esau went to the field to hunt for game and bring it,
+6 Rebekah said to her son Jacob, “I heard your father speak to your brother Esau,
+7 ‘Bring me game and prepare for me delicious food, that I may eat it and bless you before the Lord before I die.’
+8 Now therefore, my son, obey my voice as I command you.
+9 Go to the flock and bring me two good young goats, so that I may prepare from them delicious food for your father, such as he loves.
+10 And you shall bring it to your father to eat, so that he may bless you before he dies.”
+11 But Jacob said to Rebekah his mother, “Behold, my brother Esau is a hairy man, and I am a smooth man.
+12 Perhaps my father will feel me, and I shall seem to be mocking him and bring a curse upon myself and not a blessing.”
+13 His mother said to him, “Let your curse be on me, my son; only obey my voice, and go, bring them to me.”
+14 So he went and took them and brought them to his mother, and his mother prepared delicious food, such as his father loved.
+15 Then Rebekah took the best garments of Esau her older son, which were with her in the house, and put them on Jacob her younger son.
+16 And with the skins of the young goats she covered his hands and the smooth part of his neck.
+17 And she put the delicious food and the bread, which she had prepared, into the hand of her son Jacob.
+18 So he went in to his father and said, “My father.” And he said, “Here I am. Who are you, my son?”
+19 Jacob said to his father, “I am Esau your firstborn. I have done as you told me; now sit up and eat of my game, that your soul may bless me.”
+20 But Isaac said to his son, “How is it that you have found it so quickly, my son?” He answered, “Because the Lord your God granted me success.”
+21 Then Isaac said to Jacob, “Please come near, that I may feel you, my son, to know whether you are my very son Esau or not.”
+22 So Jacob went near to Isaac his father, who felt him and said, “The voice is Jacob's voice, but the hands are the hands of Esau.”
+23 And he did not recognize him, because his hands were hairy like his brother Esau's hands. So he blessed him.
+24 He said, “Are you really my son Esau?” He answered, “I am.”
+25 Then he said, “Bring it near to me, that I may eat of my son's game and bless you.” So he brought it near to him, and he ate; and he brought him wine, and he drank.
+26 Then his father Isaac said to him, “Come near and kiss me, my son.”
+27 So he came near and kissed him. And Isaac smelled the smell of his garments and blessed him and said, “See, the smell of my son is as the smell of a field that the Lord has blessed!
+28 May God give you of the dew of heaven and of the fatness of the earth and plenty of grain and wine.
+29 Let peoples serve you, and nations bow down to you. Be lord over your brothers, and may your mother's sons bow down to you. Cursed be everyone who curses you, and blessed be everyone who blesses you!”
+30 As soon as Isaac had finished blessing Jacob, when Jacob had scarcely gone out from the presence of Isaac his father, Esau his brother came in from his hunting.
+31 He also prepared delicious food and brought it to his father. And he said to his father, “Let my father arise and eat of his son's game, that you may bless me.”
+32 His father Isaac said to him, “Who are you?” He answered, “I am your son, your firstborn, Esau.”
+33 Then Isaac trembled very violently and said, “Who was it then that hunted game and brought it to me? And I ate it all before you came, and I have blessed him—yes, and he shall be blessed.”
+34 As soon as Esau heard the words of his father, he cried out with an exceedingly great and bitter cry and said to his father, “Bless me, even me also, O my father!”
+35 But he said, “Your brother came deceitfully, and he has taken away your blessing.”
+36 Esau said, “Is he not rightly named Jacob? For he has cheated me these two times. He took away my birthright, and behold, now he has taken away my blessing.” Then he said, “Have you not reserved a blessing for me?”
+37 Isaac answered and said to Esau, “Behold, I have made him lord over you, and all his brothers I have given to him for servants, and with grain and wine I have sustained him. What then can I do for you, my son?”
+38 Esau said to his father, “Have you but one blessing, my father? Bless me, even me also, O my father!” And Esau lifted up his voice and wept.
+39 Then Isaac his father answered and said to him: “Behold, away from the fatness of the earth shall your dwelling be, and away from the dew of heaven on high.
+40 By your sword you shall live, and serve your brother; but when you grow restless you shall break his yoke from your neck.”
+41 Now Esau hated Jacob because of the blessing with which his father had blessed him, and Esau said to himself, “The days of mourning for my father are approaching; then I will kill my brother Jacob.”
+42 But the words of Esau her older son were told to Rebekah. So she sent and called Jacob her younger son and said to him, “Behold, your brother Esau comforts himself by planning to kill you.
+43 Now therefore, my son, obey my voice: arise, flee to Laban my brother in Haran
+44 and stay with him a while, until your brother's fury turns away—
+45 until your brother's anger turns away from you, and he forgets what you have done to him. Then I will send and bring you from there. Why should I be bereft of you both in one day?”
+46 Then Rebekah said to Isaac, “I loathe my life because of the Hittite women. If Jacob marries one of the Hittite women like these, one of the native women of the land, what good will life be to me?”

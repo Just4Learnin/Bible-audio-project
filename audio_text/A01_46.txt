@@ -1,22 +1,34 @@
-1. And it came to pass after these things, that one said to Joseph, Behold, thy father is sick: and he took with him his two sons, Manasseh and Ephraim.
-2. And one told Jacob, and said, Behold, thy son Joseph cometh unto thee: and Israel strengthened himself, and sat upon the bed.
-3. And Jacob said unto Joseph, God Almighty appeared unto me at Luz in the land of Canaan, and blessed me,
-4. and said unto me, Behold, I will make thee fruitful, and multiply thee, and I will make of thee a company of peoples, and will give this land to thy seed after thee for an everlasting possession.
-5. And now thy two sons, who were born unto thee in the land of Egypt before I came unto thee into Egypt, are mine; Ephraim and Manasseh, even as Reuben and Simeon, shall be mine.
-6. And thy issue, that thou begettest after them, shall be thine; they shall be called after the name of their brethren in their inheritance.
-7. And as for me, when I came from Paddan, Rachel died by me in the land of Canaan in the way, when there was still some distance to come unto Ephrath: and I buried her there in the way to Ephrath (the same is Beth-lehem).
-8. And Israel beheld Joseph's sons, and said, Who are these?
-9. And Joseph said unto his father, They are my sons, whom God hath given me here. And he said, Bring them, I pray thee, unto me, and I will bless them.
-10. Now the eyes of Israel were dim for age, so that he could not see. And he brought them near unto him; and he kissed them, and embraced them.
-11. And Israel said unto Joseph, I had not thought to see thy face: and, lo, God hath let me see thy seed also.
-12. And Joseph brought them out from between his knees; and he bowed himself with his face to the earth.
-13. And Joseph took them both, Ephraim in his right hand toward Israel's left hand, and Manasseh in his left hand toward Israel's right hand, and brought them near unto him.
-14. And Israel stretched out his right hand, and laid it upon Ephraim's head, who was the younger, and his left hand upon Manasseh's head, guiding his hands wittingly; for Manasseh was the first-born.
-15. And he blessed Joseph, and said, The God before whom my fathers Abraham and Isaac did walk, the God who hath fed me all my life long unto this day,
-16. the angel who hath redeemed me from all evil, bless the lads; and let my name be named on them, and the name of my fathers Abraham and Isaac; and let them grow into a multitude in the midst of the earth.
-17. And when Joseph saw that his father laid his right hand upon the head of Ephraim, it displeased him: and he held up his father's hand, to remove it from Ephraim's head unto Manasseh's head.
-18. And Joseph said unto his father, Not so, my father; for this is the first-born; put thy right hand upon his head.
-19. And his father refused, and said, I know [it], my son, I know [it] ; he also shall become a people, and he also shall be great: howbeit his younger brother shall be greater than he, and his seed shall become a multitude of nations.
-20. And he blessed them that day, saying, In thee will Israel bless, saying, God make thee as Ephraim and as Manasseh: and he set Ephraim before Manasseh.
-21. And Israel said unto Joseph, Behold, I die: but God will be with you, and bring you again unto the land of your fathers.
-22. Moreover I have given to thee one portion above thy brethren, which I took out of the hand of the Amorite with my sword and with my bow.
+1 So Israel took his journey with all that he had and came to Beersheba, and offered sacrifices to the God of his father Isaac.
+2 And God spoke to Israel in visions of the night and said, “Jacob, Jacob.” And he said, “Here I am.”
+3 Then he said, “I am God, the God of your father. Do not be afraid to go down to Egypt, for there I will make you into a great nation.
+4 I myself will go down with you to Egypt, and I will also bring you up again, and Joseph's hand shall close your eyes.”
+5 Then Jacob set out from Beersheba. The sons of Israel carried Jacob their father, their little ones, and their wives, in the wagons that Pharaoh had sent to carry him.
+6 They also took their livestock and their goods, which they had gained in the land of Canaan, and came into Egypt, Jacob and all his offspring with him,
+7 his sons, and his sons' sons with him, his daughters, and his sons' daughters. All his offspring he brought with him into Egypt.
+8 Now these are the names of the descendants of Israel, who came into Egypt, Jacob and his sons.
+9 Reuben, Jacob's firstborn, and Reuben's sons: Hanoch, Pallu, Hezron, and Carmi.
+10 The sons of Simeon: Jemuel, Jamin, Ohad, Jachin, Zohar, and Shaul, the son of a Canaanite woman.
+11 The sons of Levi: Gershon, Kohath, and Merari.
+12 The sons of Judah: Er, Onan, Shelah, Perez, and Zerah (but Er and Onan had died in the land of Canaan). And the sons of Perez were Hezron and Hamul.
+13 The sons of Issachar: Tola, Puvah, Iob, and Shimron.
+14 The sons of Zebulun: Sered, Elon, and Jahleel.
+15 These are the sons of Leah, whom she bore to Jacob in Paddan-aram, together with his daughter Dinah; all the persons, male and female, were thirty-three.
+16 The sons of Gad: Ziphion, Haggi, Shuni, Ezbon, Eri, Arodi, and Areli.
+17 The sons of Asher: Imnah, Ishvah, Ishvi, Beriah, with Serah their sister. And the sons of Beriah: Heber and Malchiel.
+18 These are the sons of Zilpah, whom Laban gave to Leah his daughter; and these she bore to Jacob—sixteen persons.
+19 The sons of Rachel, Jacob's wife: Joseph and Benjamin.
+20 And to Joseph in the land of Egypt were born Manasseh and Ephraim, whom Asenath, the daughter of Potiphera the priest of On, bore to him.
+21 The sons of Benjamin: Bela, Becher, Ashbel, Gera, Naaman, Ehi, Rosh, Muppim, Huppim, and Ard.
+22 These are the sons of Rachel, who were born to Jacob—fourteen persons in all.
+23 The son of Dan: Hushim.
+24 The sons of Naphtali: Jahzeel, Guni, Jezer, and Shillem.
+25 These are the sons of Bilhah, whom Laban gave to Rachel his daughter, and these she bore to Jacob—seven persons in all.
+26 All the persons belonging to Jacob who came into Egypt, who were his own descendants, not including Jacob's sons' wives, were sixty-six persons in all.
+27 And the sons of Joseph, who were born to him in Egypt, were two. All the persons of the house of Jacob who came into Egypt were seventy.
+28 He had sent Judah ahead of him to Joseph to show the way before him in Goshen, and they came into the land of Goshen.
+29 Then Joseph prepared his chariot and went up to meet Israel his father in Goshen. He presented himself to him and fell on his neck and wept on his neck a good while.
+30 Israel said to Joseph, “Now let me die, since I have seen your face and know that you are still alive.”
+31 Joseph said to his brothers and to his father's household, “I will go up and tell Pharaoh, and will say to him, ‘My brothers and my father's household, who were in the land of Canaan, have come to me.
+32 And the men are shepherds, for they have been keepers of livestock, and they have brought their flocks and their herds and all that they have.’
+33 When Pharaoh calls you and says, ‘What is your occupation?’
+34 you shall say, ‘Your servants have been keepers of livestock from our youth even until now, both we and our fathers,’ in order that you may dwell in the land of Goshen, for every shepherd is an abomination to the Egyptians.”

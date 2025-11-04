@@ -1,22 +1,35 @@
-1. And Isaac called Jacob, and blessed him, and charged him, and said unto him, Thou shalt not take a wife of the daughters of Canaan.
-2. Arise, go to Paddan-aram, to the house of Bethuel thy mother's father; and take thee a wife from thence of the daughters of Laban thy mother's brother.
-3. And God Almighty bless thee, and make thee fruitful, and multiply thee, that thou mayest be a company of peoples;
-4. and give thee the blessing of Abraham, to thee, and to thy seed with thee; that thou mayest inherit the land of thy sojournings, which God gave unto Abraham.
-5. And Isaac sent away Jacob: and he went to Paddan-aram unto Laban, son of Bethuel the Syrian, the brother of Rebekah, Jacob's and Esau's mother.
-6. Now Esau saw that Isaac had blessed Jacob and sent him away to Paddan-aram, to take him a wife from thence; and that as he blessed him he gave him a charge, saying, Thou shalt not take a wife of the daughters of Canaan;
-7. and that Jacob obeyed his father and his mother, and was gone to Paddan-aram:
-8. and Esau saw that the daughters of Canaan pleased not Isaac his father;
-9. and Esau went unto Ishmael, and took, besides the wives that he had, Mahalath the daughter of Ishmael Abraham's son, the sister of Nebaioth, to be his wife.
-10. And Jacob went out from Beer-sheba, and went toward Haran.
-11. And he lighted upon a certain place, and tarried there all night, because the sun was set; and he took one of the stones of the place, and put it under his head, and lay down in that place to sleep.
-12. And he dreamed; and behold, a ladder set up on the earth, and the top of it reached to heaven; and, behold, the angels of God ascending and descending on it.
-13. And, behold, Jehovah stood above it, and said, I am Jehovah, the God of Abraham thy father, and the God of Isaac: the land whereon thou liest, to thee will I give it, and to thy seed;
-14. and thy seed shall be as the dust of the earth, and thou shalt spread abroad to the west, and to the east, and to the north, and to the south: and in thee and in thy seed shall all the families of the earth be blessed.
-15. And, behold, I am with thee, and will keep thee whithersoever thou goest, and will bring thee again into this land; for I will not leave thee, until I have done that which I have spoken to thee of.
-16. And Jacob awaked out of his sleep, and he said, Surely Jehovah is in this place; and I knew it not.
-17. And he was afraid, and said, How dreadful is this place! this is none other than the house of God, and this is the gate of heaven.
-18. And Jacob rose up early in the morning, and took the stone that he had put under his head, and set it up for a pillar, and poured oil upon the top of it.
-19. And he called the name of that place Beth-el: but the name of the city was Luz at the first.
-20. And Jacob vowed a vow, saying, If God will be with me, and will keep me in this way that I go, and will give me bread to eat, and raiment to put on,
-21. so that I come again to my father's house in peace, and Jehovah will be my God,
-22. then this stone, which I have set up for a pillar, shall be God's house: and of all that thou shalt give me I will surely give the tenth unto thee.
+1 Now there was a famine in the land, besides the former famine that was in the days of Abraham. And Isaac went to Gerar to Abimelech king of the Philistines.
+2 And the Lord appeared to him and said, “Do not go down to Egypt; dwell in the land of which I shall tell you.
+3 Sojourn in this land, and I will be with you and will bless you, for to you and to your offspring I will give all these lands, and I will establish the oath that I swore to Abraham your father.
+4 I will multiply your offspring as the stars of heaven and will give to your offspring all these lands. And in your offspring all the nations of the earth shall be blessed,
+5 because Abraham obeyed my voice and kept my charge, my commandments, my statutes, and my laws.”
+6 So Isaac settled in Gerar.
+7 When the men of the place asked him about his wife, he said, “She is my sister,” for he feared to say, “My wife,” thinking, “lest the men of the place should kill me because of Rebekah,” because she was attractive in appearance.
+8 When he had been there a long time, Abimelech king of the Philistines looked out of a window and saw Isaac laughing with Rebekah his wife.
+9 So Abimelech called Isaac and said, “Behold, she is your wife. How then could you say, ‘She is my sister’?” Isaac said to him, “Because I thought, ‘Lest I die because of her.’”
+10 Abimelech said, “What is this you have done to us? One of the people might easily have lain with your wife, and you would have brought guilt upon us.”
+11 So Abimelech warned all the people, saying, “Whoever touches this man or his wife shall surely be put to death.”
+12 And Isaac sowed in that land and reaped in the same year a hundredfold. The Lord blessed him,
+13 and the man became rich, and gained more and more until he became very wealthy.
+14 He had possessions of flocks and herds and many servants, so that the Philistines envied him.
+15 (Now the Philistines had stopped and filled with earth all the wells that his father's servants had dug in the days of Abraham his father.)
+16 And Abimelech said to Isaac, “Go away from us, for you are much mightier than we.”
+17 So Isaac departed from there and encamped in the Valley of Gerar and settled there.
+18 And Isaac dug again the wells of water that had been dug in the days of Abraham his father, which the Philistines had stopped after the death of Abraham. And he gave them the same names that his father had given them.
+19 But when Isaac's servants dug in the valley and found there a well of spring water,
+20 the herdsmen of Gerar quarreled with Isaac's herdsmen, saying, “The water is ours.” So he called the name of the well Esek, because they contended with him.
+21 Then they dug another well, and they quarreled over that also, so he called its name Sitnah.
+22 And he moved from there and dug another well, and they did not quarrel over it. So he called its name Rehoboth, saying, “For now the Lord has made room for us, and we shall be fruitful in the land.”
+23 From there he went up to Beersheba.
+24 And the Lord appeared to him the same night and said, “I am the God of Abraham your father. Fear not, for I am with you and will bless you and multiply your offspring for my servant Abraham's sake.”
+25 So he built an altar there and called upon the name of the Lord and pitched his tent there. And there Isaac's servants dug a well.
+26 When Abimelech went to him from Gerar with Ahuzzath his adviser and Phicol the commander of his army,
+27 Isaac said to them, “Why have you come to me, seeing that you hate me and have sent me away from you?”
+28 They said, “We see plainly that the Lord has been with you. So we said, let there be a sworn pact between us, between you and us, and let us make a covenant with you,
+29 that you will do us no harm, just as we have not touched you and have done to you nothing but good and have sent you away in peace. You are now the blessed of the Lord.”
+30 So he made them a feast, and they ate and drank.
+31 In the morning they rose early and exchanged oaths. And Isaac sent them on their way, and they departed from him in peace.
+32 That same day Isaac's servants came and told him about the well that they had dug and said to him, “We have found water.”
+33 He called it Shibah; therefore the name of the city is Beersheba to this day.
+34 When Esau was forty years old, he took as his wives Judith the daughter of Beeri the Hittite, and Basemath the daughter of Elon the Hittite,
+35 and they made life bitter for Isaac and Rebekah.
