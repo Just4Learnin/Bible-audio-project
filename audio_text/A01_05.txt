@@ -1,32 +1,30 @@
-1. This is the book of the generations of Adam. In the day that God created man, in the likeness of God made he him;
-2. male and female created he them, and blessed them, and called their name Adam, in the day when they were created.
-3. And Adam lived a hundred and thirty years, and begat [a son] in his own likeness, after his image; and called his name Seth:
-4. and the days of Adam after he begat Seth were eight hundred years: and he begat sons and daughters.
-5. And all the days that Adam lived were nine hundred and thirty years: and he died.
-6. And Seth lived a hundred and five years, and begat Enosh:
-7. and Seth lived after he begat Enosh eight hundred and seven years, and begat sons and daughters:
-8. and all the days of Seth were nine hundred and twelve years: and he died.
-9. And Enosh lived ninety years, and begat Kenan:
-10. and Enosh lived after he begat Kenan eight hundred and fifteen years, and begat sons and daughters:
-11. and all the days of Enosh were nine hundred and five years: and he died.
-12. And Kenan lived seventy years, and begat Mahalalel:
-13. and Kenan lived after he begat Mahalalel eight hundred and forty years, and begat sons and daughters:
-14. and all the days of Kenan were nine hundred and ten years: and he died.
-15. And Mahalalel lived sixty and five years, and begat Jared:
-16. And Mahalalel lived after he begat Jared eight hundred and thirty years, and begat sons and daughters:
-17. and all the days of Mahalalel were eight hundred ninety and five years: and he died.
-18. And Jared lived a hundred sixty and two years, and begat Enoch:
-19. and Jared lived after he begat Enoch eight hundred years, and begat sons and daughters:
-20. And all the days of Jared were nine hundred sixty and two years: and he died.
-21. And Enoch lived sixty and five years, and begat Methuselah:
-22. and Enoch walked with God after he begat Methuselah three hundred years, and begat sons and daughters:
-23. and all the days of Enoch were three hundred sixty and five years:
-24. and Enoch walked with God: and he was not; for God took him.
-25. And Methuselah lived a hundred eighty and seven years, and begat Lamech:
-26. and Methuselah lived after he begat Lamech seven hundred eighty and two years, and begat sons and daughters:
-27. And all the days of Methuselah were nine hundred sixty and nine years: and he died.
-28. And Lamech lived a hundred eighty and two years, and begat a son:
-29. and he called his name Noah, saying, This same shall comfort us in our work and in the toil of our hands, [which cometh] because of the ground which Jehovah hath cursed.
-30. And Lamech lived after he begat Noah five hundred ninety and five years, and begat sons and daughters:
-31. And all the days of Lamech were seven hundred seventy and seven years: and he died.
-32. And Noah was five hundred years old: and Noah begat Shem, Ham, and Japheth.
+1 This is the book of the generations of Adam. When God created man, he made him in the likeness of God. 2 Male and female he created them, and he blessed them and named them Man when they were created.
+3 When Adam had lived 130 years, he fathered a son in his own likeness, after his image, and named him Seth.
+4 The days of Adam after he fathered Seth were 800 years; and he had other sons and daughters.
+5 Thus all the days that Adam lived were 930 years, and he died.
+6 When Seth had lived 105 years, he fathered Enosh.
+7 Seth lived after he fathered Enosh 807 years and had other sons and daughters.
+8 Thus all the days of Seth were 912 years, and he died.
+9 When Enosh had lived 90 years, he fathered Kenan.
+10 Enosh lived after he fathered Kenan 815 years and had other sons and daughters.
+11 Thus all the days of Enosh were 905 years, and he died.
+12 When Kenan had lived 70 years, he fathered Mahalalel.
+13 Kenan lived after he fathered Mahalalel 840 years and had other sons and daughters.
+14 Thus all the days of Kenan were 910 years, and he died.
+15 When Mahalalel had lived 65 years, he fathered Jared.
+16 Mahalalel lived after he fathered Jared 830 years and had other sons and daughters.
+17 Thus all the days of Mahalalel were 895 years, and he died.
+18 When Jared had lived 162 years, he fathered Enoch.
+19 Jared lived after he fathered Enoch 800 years and had other sons and daughters.
+20 Thus all the days of Jared were 962 years, and he died.
+21 When Enoch had lived 65 years, he fathered Methuselah.
+22 Enoch walked with God after he fathered Methuselah 300 years and had other sons and daughters.
+23 Thus all the days of Enoch were 365 years.
+24 Enoch walked with God, and he was not, for God took him.
+25 When Methuselah had lived 187 years, he fathered Lamech.
+26 Methuselah lived after he fathered Lamech 782 years and had other sons and daughters.
+27 Thus all the days of Methuselah were 969 years, and he died.
+28 When Lamech had lived 182 years, he fathered a son 29 and called his name Noah, saying, “Out of the ground that the Lord has cursed, this one shall bring us relief from our work and from the painful toil of our hands.”
+30 Lamech lived after he fathered Noah 595 years and had other sons and daughters.
+31 Thus all the days of Lamech were 777 years, and he died.
+32 After Noah was 500 years old, Noah fathered Shem, Ham, and Japheth.

@@ -15,6 +15,8 @@
   const startBtn = document.getElementById('startBtn');
   const lyricsScroll = document.getElementById('lyricsScroll');
   const gif = document.getElementById('gifVisualizer');
+  const bookSelect = document.getElementById('bookSelect');
+  const chapterSelect = document.getElementById('chapterSelect');
 
   let playlist = [];
   let index = 0;
@@ -44,10 +46,37 @@
   animatePulse();
 
   // 🎧 Parse file metadata
+  const bookMap = {
+    'A01': 'Genesis',
+    'A02': 'Exodus',
+    'A03': 'Leviticus',
+    'A04': 'Numbers',
+    'A05': 'Deuteronomy',
+    // Add more books as needed
+  };
+
+  function populateBookSelect() {
+    const books = [...new Set(playlist.map(track => track.book))];
+    bookSelect.innerHTML = books.map(bookCode => {
+      const bookName = bookMap[bookCode] || bookCode;
+      return `<option value="${bookCode}">${bookName}</option>`;
+    }).join('');
+    bookSelect.value = playlist[index].book;
+  }
+
+  function populateChapterSelect(bookCode) {
+    const chapters = playlist.filter(track => track.book === bookCode).map(track => track.chapter);
+    chapterSelect.innerHTML = chapters.map(chapter => `<option value="${chapter}">${chapter}</option>`).join('');
+    chapterSelect.value = playlist[index].chapter;
+  }
+
   function parseFilename(filename) {
     const base = filename.split('/').pop().replace(/\.[^/.]+$/, "");
     const tokens = base.split(/[_\- ]+/);
-    return { book: tokens[0] || base, chapter: tokens[1] || '', title: `${tokens[0] || base} ${tokens[1] || ''}` };
+    const bookCode = tokens[0] || base;
+    const chapter = tokens[1] || '';
+    const bookName = bookMap[bookCode] || bookCode;
+    return { book: bookCode, chapter: chapter, title: `${bookName} Chapter ${chapter}` };
   }
 
   // 🗂 Load playlist.json
@@ -61,6 +90,8 @@
       });
       index = 0;
       loadTrack(index);
+      populateBookSelect();
+      populateChapterSelect(playlist[index].book);
     } catch {
       alert('No playlist.json found in /audio/');
     }
@@ -71,8 +102,11 @@
     if (!track) return;
     audio.src = track.src;
     nowPlayingEl.textContent = `Now Playing: ${track.title}`;
-    bookChapterEl.textContent = `${track.book} ${track.chapter}`;
+    bookChapterEl.textContent = track.title;
     loadLyrics(track.book, track.chapter);
+    bookSelect.value = track.book;
+    populateChapterSelect(track.book);
+    chapterSelect.value = track.chapter;
   }
 
   function play() {
@@ -88,7 +122,32 @@
     playPauseBtn.textContent = '▶ Play';
   }
 
-  playPauseBtn.addEventListener('click', () => (isPlaying ? pause() : play()));
+  bookSelect.addEventListener('change', (e) => {
+    const selectedBookCode = e.target.value;
+    populateChapterSelect(selectedBookCode);
+    // Load the first chapter of the selected book
+    const firstChapterTrack = playlist.find(track => track.book === selectedBookCode && track.chapter === chapterSelect.options[0].value);
+    if (firstChapterTrack) {
+      index = playlist.indexOf(firstChapterTrack);
+      loadTrack(index);
+      play();
+    }
+  });
+
+  chapterSelect.addEventListener('change', (e) => {
+    const selectedBookCode = bookSelect.value;
+    const selectedChapter = e.target.value;
+    const selectedTrack = playlist.find(track => track.book === selectedBookCode && track.chapter === selectedChapter);
+    if (selectedTrack) {
+      index = playlist.indexOf(selectedTrack);
+      loadTrack(index);
+      play();
+    }
+  });
+  playPauseBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    (isPlaying ? pause() : play());
+  });
   nextBtn.addEventListener('click', () => {
     index = (index + 1) % playlist.length;
     loadTrack(index);
@@ -113,6 +172,7 @@
   container.addEventListener('dblclick', () => container.classList.toggle('collapsed'));
 
   // 📜 Load Bible text
+  let lyricLines = [];
   async function loadLyrics(book, chapter) {
     const path = `./audio_text/${book}_${chapter}.txt`;
     try {
@@ -120,41 +180,80 @@
       const text = await res.text();
       const lines = text.split('\n').filter(Boolean);
       lyricsScroll.innerHTML = lines.map(l => `<div class="lyrics-line">${l}</div>`).join('');
+      lyricLines = Array.from(lyricsScroll.children);
     } catch {
       lyricsScroll.innerHTML = '<p style="opacity:0.4;">No text for this chapter.</p>';
+      lyricLines = [];
     }
   }
+
+  function updateLyrics() {
+    if (!audio.duration || lyricLines.length === 0 || !isFinite(audio.duration)) return;
+
+    const progress = audio.currentTime / audio.duration;
+    const lineIndex = Math.floor(progress * lyricLines.length);
+
+    lyricLines.forEach((line, i) => {
+      if (i === lineIndex) {
+        line.classList.add('active');
+        // Scroll the active line into view
+        line.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        line.classList.remove('active');
+      }
+    });
+  }
+
+  audio.addEventListener('timeupdate', updateLyrics);
 })();
 
   // 🖱️ Make the player draggable
   let isDragging = false;
-  let offsetX, offsetY;
+  let startX, startY, initialMouseX, initialMouseY;
 
   container.addEventListener('mousedown', (e) => {
     // Prevent dragging if user clicks a button, slider, or input
-    if (['BUTTON', 'INPUT', 'LABEL'].includes(e.target.tagName)) return;
+    if (['BUTTON', 'INPUT', 'LABEL', 'SELECT', 'OPTION'].includes(e.target.tagName)) return;
 
-    isDragging = true;
-    container.style.transition = 'none';
+    isDragging = false; // Assume it's a click initially
+    initialMouseX = e.clientX;
+    initialMouseY = e.clientY;
     const rect = container.getBoundingClientRect();
-    offsetX = e.clientX - rect.left;
-    offsetY = e.clientY - rect.top;
+    startX = rect.left;
+    startY = rect.top;
+    container.style.transition = 'none';
     container.style.cursor = 'grabbing';
   });
 
   document.addEventListener('mousemove', (e) => {
-    if (!isDragging) return;
-    const x = e.clientX - offsetX;
-    const y = e.clientY - offsetY;
-    container.style.left = `${x + container.offsetWidth / 2}px`;
-    container.style.top = `${y + container.offsetHeight / 2}px`;
-    container.style.transform = `translate(-50%, -50%)`; // keep center-based layout
+    if (e.buttons === 0) { // If mouse button is released outside the container
+      isDragging = false;
+      container.style.transition = 'all 0.4s ease';
+      container.style.cursor = 'grab';
+      return;
+    }
+
+    if (initialMouseX === undefined) return; // No mousedown event recorded
+
+    const dx = e.clientX - initialMouseX;
+    const dy = e.clientY - initialMouseY;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    if (distance > 5 || isDragging) { // Start dragging if moved beyond threshold or already dragging
+      isDragging = true;
+      const newX = startX + dx;
+      const newY = startY + dy;
+
+      container.style.left = `${newX + container.offsetWidth / 2}px`;
+      container.style.top = `${newY + container.offsetHeight / 2}px`;
+      container.style.transform = `translate(-50%, -50%)`;
+    }
   });
 
   document.addEventListener('mouseup', () => {
-    if (!isDragging) return;
     isDragging = false;
+    initialMouseX = undefined; // Reset initial mouse position
+    initialMouseY = undefined;
     container.style.transition = 'all 0.4s ease';
     container.style.cursor = 'grab';
   });
-
