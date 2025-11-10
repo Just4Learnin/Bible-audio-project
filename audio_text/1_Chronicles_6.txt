@@ -1,18 +1,18 @@
 1. The sons of Levi: Gershon, Kohath, and Merari.
 2. And the sons of Kohath: Amram, Izhar, and Hebron, and Uzziel.
 3. And the children of Amram: Aaron, and Moses, and Miriam. And the sons of Aaron: Nadab, and Abihu, Eleazar, and Ithamar.
-4. Eleazar begat Phinehas, Phinehas begat Abishua,
-5. and Abishua begat Bukki, and Bukki begat Uzzi,
-6. and Uzzi begat Zerahiah, and Zerahiah begat Meraioth,
-7. Meraioth begat Amariah, and Amariah begat Ahitub,
-8. and Ahitub begat Zadok, and Zadok begat Ahimaaz,
-9. and Ahimaaz begat Azariah, and Azariah begat Johanan,
-10. and Johanan begat Azariah, (he it is that executed the priest's office in the house that Solomon built in Jerusalem),
-11. and Azariah begat Amariah, and Amariah begat Ahitub,
-12. and Ahitub begat Zadok, and Zadok begat Shallum,
-13. and Shallum begat Hilkiah, and Hilkiah begat Azariah,
-14. and Azariah begat Seraiah, and Seraiah begat Jehozadak;
-15. And Jehozadak went [into captivity], when Jehovah carried away Judah and Jerusalem by the hand of Nebuchadnezzar.
+4. Eleazar fathered Phinehas, Phinehas fathered Abishua,
+5. and Abishua fathered Bukki, and Bukki fathered Uzzi,
+6. and Uzzi fathered Zerahiah, and Zerahiah fathered Meraioth,
+7. Meraioth fathered Amariah, and Amariah fathered Ahitub,
+8. and Ahitub fathered Zadok, and Zadok fathered Ahimaaz,
+9. and Ahimaaz fathered Azariah, and Azariah fathered Johanan,
+10. and Johanan fathered Azariah, (he it is that executed the priest's office in the house that Solomon built in Jerusalem),
+11. and Azariah fathered Amariah, and Amariah fathered Ahitub,
+12. and Ahitub fathered Zadok, and Zadok fathered Shallum,
+13. and Shallum fathered Hilkiah, and Hilkiah fathered Azariah,
+14. and Azariah fathered Seraiah, and Seraiah fathered Jehozadak;
+15. And Jehozadak went [into captivity], when the LORD carried away Judah and Jerusalem by the hand of Nebuchadnezzar.
 16. The sons of Levi: Gershom, Kohath, and Merari.
 17. And these are the names of the sons of Gershom: Libni and Shimei.
 18. And the sons of Kohath were Amram, and Izhar, and Hebron, and Uzziel.
@@ -28,8 +28,8 @@
 28. And the sons of Samuel: the first-born, [Joel], and the second Abijah.
 29. The sons of Merari: Mahli, Libni his son, Shimei his son, Uzzah his son,
 30. Shimea his son, Haggiah his son, Asaiah his son.
-31. And these are they whom David set over the service of song in the house of Jehovah, after that the ark had rest.
-32. And they ministered with song before the tabernacle of the tent of meeting, until Solomon had built the house of Jehovah in Jerusalem: and they waited on their office according to their order. [
+31. And these are they whom David set over the service of song in the house of the LORD, after that the ark had rest.
+32. And they ministered with song before the tabernacle of the tent of meeting, until Solomon had built the house of the LORD in Jerusalem: and they waited on their office according to their order. [
 33. And these are they that waited, and their sons. Of the sons of the Kohathites: Heman the singer, the son of Joel, the son of Samuel,
 34. the son of Elkanah, the son of Jeroham, the son of Eliel, the son of Toah,
 35. the son of Zuph, the son of Elkanah, the son of Mahath, the son of Amasai,
@@ -52,8 +52,8 @@
 52. Meraioth his son, Amariah his son, Ahitub his son,
 53. Zadok his son, Ahimaaz his son.
 54. Now these are their dwelling-places according to their encampments in their borders: to the sons of Aaron, of the families of the Kohathites (for theirs was the [first] lot),
-55. to them they gave Hebron in the land of Judah, and the suburbs thereof round about it;
-56. but the fields of the city, and the villages thereof, they gave to Caleb the son of Jephunneh.
+55. to them they gave Hebron in the land of Judah, and the suburbs of it round about it;
+56. but the fields of the city, and the villages of it, they gave to Caleb the son of Jephunneh.
 57. And to the sons of Aaron they gave the cities of refuge, Hebron; Libnah also with its suburbs, and Jattir, and Eshtemoa with its suburbs,
 58. and Hilen with its suburbs, Debir with its suburbs,
 59. and Ashan with its suburbs, and Beth-shemesh with its suburbs;
@@ -64,7 +64,7 @@
 64. And the children of Israel gave to the Levites the cities with their suburbs.
 65. And they gave by lot out of the tribe of the children of Judah, and out of the tribe of the children of Simeon, and out of the tribe of the children of Benjamin, these cities which are mentioned by name.
 66. And some of the families of the sons of Kohath had cities of their borders out of the tribe of Ephraim.
-67. And they gave unto them the cities of refuge, Shechem in the hill-country of Ephraim with its suburbs; Gezer also with its suburbs,
+67. And they gave to them the cities of refuge, Shechem in the hill-country of Ephraim with its suburbs; Gezer also with its suburbs,
 68. and Jokmeam with its suburbs, and Beth-horon with its suburbs,
 69. and Aijalon with its suburbs, and Gath-rimmon with its suburbs;
 70. and out of the half-tribe of Manasseh, Aner with its suburbs, and Bileam with its suburbs, for the rest of the family of the sons of Kohath.

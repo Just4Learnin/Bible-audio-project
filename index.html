@@ -7,13 +7,28 @@
   <link rel="icon" href="./lamb.jpg" type="image/jpeg">
 
   <style>
+    /* CSS Custom Properties for easy color customization */
+    :root {
+      --primary-color: #f6edf179;
+      --accent-color: #ff69b4;
+      --shadow-color: #575557cc;
+      --overlay-color: rgba(0,0,0,0.55);
+      --text-color: #fff;
+      --text-active-color: #f6edf1;
+      --text-background-color: rgba(255,255,255,0.4);
+      --container-bg: rgba(0,0,0,0.75);
+      --button-bg: rgba(91,89,89,0.953);
+      --button-hover-bg: #000;
+    }
+    
     * {margin:0;padding:0;box-sizing:border-box;}
     html,body {
       height:100%;width:100%;
       font-family:'Courier New',monospace;
       background:#1a1a2e;
-      color:#fff;
-      overflow:hidden;
+      color:var(--text-color);
+      overflow-x:hidden;
+      overflow-y:auto;
     }
 
     body {
@@ -22,79 +37,185 @@
       background-position:center;
       background-attachment:fixed;
       background-repeat:no-repeat;
+      min-height:100vh;
+      width:100vw;
     }
 
     body::before {
       content:'';
       position:fixed;inset:0;
-      background:rgba(0,0,0,0.55);
+      background:var(--overlay-color, rgba(0,0,0,0.55));
       z-index:0;
     }
 
-    /* Scrollable background text */
+    /* Enhanced page-scrolling background text */
     .lyrics-scroll {
-      position:fixed;
-      inset:0;
-      overflow-y:auto;
+      position:relative;
       z-index:0;
       padding:80px 40px 120px;
-      text-align:center;
-      font-size:22px;
-      color:rgba(255,255,255,0.4);
-      line-height:1.8;
-      scroll-behavior:smooth;
+      text-align:left;
+      font-size:20px;
+      color:var(--text-background-color);
+      line-height:1.9;
+      max-width:800px;
+      margin:0 auto;
+      min-height:100vh;
+    }
+    
+    /* Hide scrollbars */
+    body::-webkit-scrollbar {
+      display:none;
+    }
+    
+    body {
+      -ms-overflow-style:none;
+      scrollbar-width:none;
+    }
+
+    .lyrics-line {
+      padding:6px 12px;
+      margin:4px 0;
+      transition:all 0.4s ease;
+      border-left:3px solid transparent;
+      border-radius:6px;
     }
 
     .lyrics-line.active {
-      color:#f6edf1;
+      color:var(--text-active-color);
       font-weight:bold;
-      text-shadow:0 0 12px rgba(148,140,144,0.9);
+      text-shadow:0 0 15px rgba(148,140,144,0.9);
+      background:rgba(255,255,255,0.15);
+      border-left:3px solid var(--accent-color);
+      transform:translateX(10px);
+      font-size:22px;
     }
 
-    /* Main circle */
+    .lyrics-line.next-verse {
+      color:rgba(255,255,255,0.8);
+      border-left:3px solid var(--accent-color);
+      opacity:0.9;
+      font-weight:500;
+    }
+
+    .lyrics-line.upcoming {
+      color:rgba(255,255,255,0.6);
+      border-left:3px solid rgba(255,255,255,0.2);
+    }
+
+    .lyrics-line.past {
+      color:rgba(255,255,255,0.3);
+      opacity:0.7;
+    }
+
+    /* Main circle - fixed position, always visible */
     .container {
       position:fixed;
       width:450px;height:450px;
+      min-width:300px;min-height:300px;
+      max-width:800px;max-height:800px;
       border-radius:50%;
-      background:rgba(0,0,0,0.55);
-      border:4px solid #f6edf179;
-      box-shadow:0 0 50px #575557cc,inset 0 0 20px rgba(49,48,48,0.2);
+      background:var(--container-bg);
+      border:4px solid var(--primary-color);
+      box-shadow:0 0 50px var(--shadow-color),inset 0 0 20px rgba(49,48,48,0.2);
       top:50%;left:50%;
       transform:translate(-50%,-50%);
-      z-index:2;
+      z-index:1000;
       display:flex;flex-direction:column;
       align-items:center;justify-content:center;
       cursor:grab;
       overflow:hidden;
       padding:20px;
       transition:all 0.4s ease;
+      resize:both;
+      pointer-events:auto;
     }
 
     .container:active {cursor:grabbing;}
 
-    /* GIF always visible */
+    /* Central control area */
     .cover {
       width:120px;height:120px;border-radius:50%;
-      background:#333;
+      background:var(--container-bg);
       display:flex;align-items:center;justify-content:center;
       margin:0 auto 10px;
-      box-shadow:0 0 20px rgba(255,105,180,0.5);
+      box-shadow:0 0 15px var(--accent-color), 0 0 30px rgba(255,105,180,0.3);
+      border:2px solid var(--primary-color);
+      position:relative;
+      z-index:2;
+      transition:all 0.3s ease;
       overflow:hidden;
+    }
+
+    /* Vectorized lamb silhouette background */
+    .cover::before {
+      content:'';
+      position:absolute;
+      top:50%;left:50%;
+      transform:translate(-50%,-50%);
+      width:80px;height:80px;
+      background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 15c-8 0-15 6-15 14v8c-3-2-7-3-10-2-5 2-8 7-8 12 0 3 1 6 3 8-1 2-1 4-1 6 0 8 6 14 14 14h2c2 6 8 10 14 10s12-4 14-10h2c8 0 14-6 14-14 0-2 0-4-1-6 2-2 3-5 3-8 0-5-3-10-8-12-3-1-7 0-10 2v-8c0-8-7-14-15-14zm0 8c4 0 7 3 7 6v12c0 1 1 2 2 2 2 0 4-1 5 0 2 1 3 3 3 5s-1 4-3 5c-1 1-1 2 0 3 1 1 1 2 1 3 0 4-3 6-6 6h-4c-1 0-2 1-2 2 0 3-3 6-6 6s-6-3-6-6c0-1-1-2-2-2h-4c-3 0-6-2-6-6 0-1 0-2 1-3 1-1 1-2 0-3-2-1-3-3-3-5s1-4 3-5c1-1 3 0 5 0 1 0 2-1 2-2V29c0-3 3-6 7-6z" fill="white" fill-opacity="0.2"/></svg>');
+      background-size:contain;
+      background-repeat:no-repeat;
+      background-position:center;
+      opacity:0.3;
+      z-index:1;
+      pointer-events:none;
+    }
+
+    .cover.playing::before {
+      opacity:0.5;
+      animation:lambGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes lambGlow {
+      0% { opacity:0.3; }
+      100% { opacity:0.6; }
+    }
+
+    .cover:hover {
+      box-shadow:0 0 25px var(--accent-color), 0 0 45px rgba(255,105,180,0.4);
+      transform:scale(1.05);
+    }
+
+    /* Central controls - hidden by default */
+    .central-controls {
+      display:none;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+      width:100%;
+      height:100%;
       position:relative;
       z-index:2;
     }
 
-    .cover img {
-      width:100%;height:100%;
-      object-fit:cover;
-      opacity:0.9;
-      border-radius:50%;
-      transition:transform 0.3s ease, opacity 0.3s ease;
+    .central-controls button {
+      background:var(--button-bg);
+      color:var(--text-color);
+      border:2px solid var(--text-color);
+      padding:4px 6px;
+      font-weight:bold;
+      border-radius:6px;
+      cursor:pointer;
+      font-size:10px;
+      transition:all 0.2s ease;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-width:24px;
+      min-height:20px;
     }
 
-    .cover.playing img {
-      animation:pulse 1s ease-in-out infinite;
-      opacity:1;
+    .central-controls button:hover {
+      background:var(--button-hover-bg);
+      color:var(--accent-color);
+      border-color:var(--accent-color);
+    }
+
+    .central-controls .play-pause-btn {
+      min-width:28px;
+      min-height:24px;
+      font-size:12px;
     }
 
     @keyframes pulse {
@@ -102,15 +223,37 @@
       50% {transform:scale(1.12);}
     }
 
-    /* Collapsed state */
+    /* Playing state indicator */
+    .cover.playing {
+      box-shadow:0 0 20px var(--accent-color), 0 0 35px rgba(255,105,180,0.5);
+      animation:gentleGlow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes gentleGlow {
+      0% {
+        box-shadow:0 0 15px var(--accent-color), 0 0 30px rgba(255,105,180,0.3);
+      }
+      100% {
+        box-shadow:0 0 20px var(--accent-color), 0 0 35px rgba(255,105,180,0.5);
+      }
+    }
+
+    /* Enhanced collapsed state */
     .container.collapsed {
-      width:140px;height:140px;
+      width:120px;height:120px;
       border-radius:50%;
-      background:rgba(0,0,0,0.55);
-      border:4px solid #f6edf179;
-      box-shadow:0 0 30px #575557cc,inset 0 0 10px rgba(49,48,48,0.2);
+      background:var(--container-bg);
+      border:3px solid var(--primary-color);
+      box-shadow:0 0 25px var(--shadow-color),inset 0 0 10px rgba(49,48,48,0.2);
       overflow:hidden;
       padding:0;
+      cursor:pointer;
+      transition:all 0.5s ease;
+    }
+
+    .container.collapsed:hover {
+      transform:translate(-50%,-50%) scale(1.1);
+      box-shadow:0 0 35px var(--accent-color),inset 0 0 15px rgba(49,48,48,0.3);
     }
 
     .container.collapsed .container-inner {
@@ -121,34 +264,81 @@
       width:100%;
       height:100%;
       margin:0;
-      background:none;
-      box-shadow:none;
-    }
-
-    .container.collapsed img {
-      width:100%;
-      height:100%;
+      background:var(--container-bg);
+      box-shadow:0 0 20px var(--accent-color), 0 0 35px rgba(255,105,180,0.4);
+      border:2px solid var(--primary-color);
       border-radius:50%;
-      object-fit:cover;
-      opacity:1;
-      animation:pulse 1.2s ease-in-out infinite;
     }
 
-    /* Collapse button */
+    .container.collapsed .cover.playing {
+      animation:collapsedGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes collapsedGlow {
+      0% {
+        box-shadow:0 0 20px var(--accent-color), 0 0 35px rgba(255,105,180,0.4);
+      }
+      100% {
+        box-shadow:0 0 25px var(--accent-color), 0 0 45px rgba(255,105,180,0.6), 0 0 65px rgba(255,105,180,0.2);
+      }
+    }
+
+    /* Show controls only when collapsed */
+    .container.collapsed .central-controls {
+      display:flex;
+    }
+    
+    /* Hide collapse button when collapsed to save space */
+    .container.collapsed .collapse-btn {
+      display:none;
+    }
+
+    /* Collapsed state progress indicator */
+    .container.collapsed::before {
+      content:'';
+      position:absolute;
+      top:-3px;left:-3px;right:-3px;bottom:-3px;
+      border-radius:50%;
+      border:3px solid transparent;
+      border-top:3px solid var(--accent-color);
+      opacity:0;
+      transition:opacity 0.3s ease;
+      pointer-events:none;
+    }
+
+    .container.collapsed.playing::before {
+      opacity:1;
+      animation:spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform:rotate(0deg); }
+      100% { transform:rotate(360deg); }
+    }
+
+    /* Enhanced collapse button */
     .collapse-btn {
       position:absolute;
-      top:10px;right:12px;
-      background:rgba(49,48,48,0.2);
-      border:2px solid #fff;
-      border-radius:8px;
-      color:#fff;
-      font-size:12px;
-      padding:4px 8px;
+      top:8px;right:8px;
+      background:var(--container-bg);
+      border:2px solid var(--primary-color);
+      border-radius:50%;
+      color:var(--text-color);
+      font-size:14px;
+      width:32px;height:32px;
+      display:flex;align-items:center;justify-content:center;
       cursor:pointer;
       z-index:5;
-      transition:all 0.2s;
+      transition:all 0.3s ease;
+      backdrop-filter:blur(5px);
     }
-    .collapse-btn:hover {background:#ff69b4;color:#000;}
+    
+    .collapse-btn:hover {
+      background:var(--accent-color);
+      color:#000;
+      transform:scale(1.1);
+      box-shadow:0 0 10px var(--accent-color);
+    }
 
     /* Player content */
     .container-inner {
@@ -165,26 +355,255 @@
     .now{font-size:14px;color:#b57ede;margin-bottom:4px;}
     .sub{font-size:11px;color:#ccc;margin-bottom:10px;}
     button{
-      background:rgba(91,89,89,0.953);
-      color:#000;border:2px solid #fff;
+      background:var(--button-bg);
+      color:var(--text-color);border:2px solid var(--text-color);
       padding:8px 14px;font-weight:bold;border-radius:6px;
       cursor:pointer;font-size:11px;
+      transition:all 0.2s ease;
     }
-    button:hover{background:#000;color:#ff69b4;border-color:#ff69b4;}
+    button:hover{background:var(--button-hover-bg);color:var(--accent-color);border-color:var(--accent-color);}
     .controls{display:flex;gap:8px;justify-content:center;margin-bottom:12px;}
     .volume-section{text-align:center;margin-bottom:12px;}
     .playlist{max-height:200px;overflow-y:auto;font-size:12px;}
+    
+    /* Progress indicator */
+    .progress-container {
+      width:100%;
+      background:rgba(255,255,255,0.2);
+      border-radius:10px;
+      height:8px;
+      margin:8px 0;
+      overflow:hidden;
+    }
+    
+    .progress-bar {
+      height:100%;
+      background:linear-gradient(90deg, var(--accent-color), var(--primary-color));
+      width:0%;
+      transition:width 0.1s ease;
+      border-radius:10px;
+    }
+    
+    .time-display {
+      display:flex;
+      justify-content:space-between;
+      font-size:10px;
+      color:var(--text-color);
+      margin-top:4px;
+    }
+    
+    /* Resize handle for container */
+    .container::after {
+      content:'⟲';
+      position:absolute;
+      bottom:5px;right:5px;
+      color:var(--primary-color);
+      font-size:16px;
+      opacity:0.6;
+      pointer-events:none;
+    }
+    
+    /* Color customization panel */
+    .color-panel {
+      position:fixed;
+      top:20px;right:20px;
+      background:var(--container-bg);
+      border:2px solid var(--primary-color);
+      border-radius:10px;
+      padding:15px;
+      z-index:1010;
+      min-width:200px;
+      backdrop-filter:blur(10px);
+      display:none;
+    }
+    
+    .color-panel.visible {
+      display:block;
+    }
+    
+    .color-control {
+      display:flex;
+      align-items:center;
+      margin-bottom:10px;
+      font-size:12px;
+    }
+    
+    .color-control label {
+      flex:1;
+      margin-right:10px;
+    }
+    
+    .color-control input[type="color"] {
+      width:40px;
+      height:25px;
+      border:none;
+      border-radius:4px;
+      cursor:pointer;
+    }
+    
+    .toggle-colors {
+      position:fixed;
+      top:20px;right:20px;
+      background:var(--container-bg);
+      border:2px solid var(--primary-color);
+      color:var(--text-color);
+      padding:8px 12px;
+      border-radius:6px;
+      cursor:pointer;
+      z-index:1011;
+      font-size:12px;
+    }
+
+    /* Mobile Responsive Styles */
+    @media (max-width: 768px) {
+      .container {
+        width:320px;height:320px;
+        min-width:250px;min-height:250px;
+        max-width:400px;max-height:400px;
+        padding:15px;
+      }
+
+      .container.collapsed {
+        width:80px;height:80px;
+      }
+
+      .lyrics-scroll {
+        padding:100px 20px 150px;
+        font-size:16px;
+        line-height:1.7;
+      }
+
+      .lyrics-line.active {
+        font-size:18px;
+      }
+
+      .toggle-colors {
+        top:10px;right:10px;
+        padding:6px 8px;
+        font-size:11px;
+      }
+
+      .color-panel {
+        top:10px;right:10px;
+        left:10px;
+        min-width:auto;
+        max-width:300px;
+      }
+
+      .container-inner {
+        overflow-y:auto;
+        max-height:280px;
+      }
+
+      button {
+        padding:6px 10px;
+        font-size:10px;
+      }
+
+      .book-chapter-selects select {
+        padding:6px;
+        font-size:11px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        width:280px;height:280px;
+        min-width:200px;min-height:200px;
+        padding:10px;
+      }
+
+      .container.collapsed {
+        width:60px;height:60px;
+      }
+
+      .lyrics-scroll {
+        padding:80px 15px 120px;
+        font-size:14px;
+      }
+
+      .lyrics-line.active {
+        font-size:16px;
+      }
+
+      .cover {
+        width:80px;height:80px;
+      }
+
+      .controls {
+        flex-direction:column;
+        gap:6px;
+      }
+
+      .book-chapter-selects {
+        flex-direction:column;
+        gap:5px;
+      }
+    }
+
+    /* Touch-friendly interactions */
+    @media (hover: none) and (pointer: coarse) {
+      .container {
+        cursor:move;
+      }
+      
+      .collapse-btn, button, .toggle-colors {
+        min-height:44px;
+        min-width:44px;
+      }
+
+      .progress-container {
+        height:12px;
+        margin:12px 0;
+      }
+
+      .color-control input[type="color"] {
+        width:50px;
+        height:35px;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="lyrics-scroll" id="lyricsScroll"></div>
 
+  <!-- Color Customization -->
+  <button class="toggle-colors" id="toggleColors">🎨 Colors</button>
+  
+  <div class="color-panel" id="colorPanel">
+    <h3 style="margin-bottom:15px;text-align:center;color:var(--text-color);">Customize Colors</h3>
+    <div class="color-control">
+      <label>Primary:</label>
+      <input type="color" id="primaryColor" value="#f6edf1">
+    </div>
+    <div class="color-control">
+      <label>Accent:</label>
+      <input type="color" id="accentColor" value="#ff69b4">
+    </div>
+    <div class="color-control">
+      <label>Background:</label>
+      <input type="range" id="backgroundOpacity" min="0" max="100" value="55">
+    </div>
+    <div class="color-control">
+      <label>Container:</label>
+      <input type="range" id="containerOpacity" min="0" max="100" value="75">
+    </div>
+    <div style="text-align:center;margin-top:15px;">
+      <button onclick="resetColors()">Reset</button>
+      <button onclick="toggleColorPanel()">Close</button>
+    </div>
+  </div>
+
   <div class="container" id="container">
     <div class="cover" id="cover">
-      <img src="./jarvis.gif" alt="Visualizer" id="gifVisualizer">
+      <div class="central-controls">
+        <button id="rewind15" title="Rewind 15 seconds">⏪</button>
+        <button id="centralPlayPause" class="play-pause-btn" title="Play/Pause">▶</button>
+        <button id="forward15" title="Forward 15 seconds">⏩</button>
+      </div>
     </div>
 
-    <button class="collapse-btn" id="collapseBtn">–</button>
+    <button class="collapse-btn" id="collapseBtn" title="Collapse Player">⌄</button>
 
     <div class="container-inner">
       <div class="book-chapter-selects" style="margin-bottom: 10px; display: flex; justify-content: center; gap: 10px;">
@@ -204,20 +623,193 @@
         <label for="volume">Volume</label><br>
         <input id="volume" type="range" min="0" max="100" value="70">
       </div>
+      <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="time-display">
+        <span id="currentTime">0:00</span>
+        <span id="totalTime">0:00</span>
+      </div>
+      <div class="sync-controls" style="margin-top:8px; text-align:center;">
+        <label style="font-size:10px; margin-right:8px;">Sync:</label>
+        <select id="syncModeSelect" style="padding:4px; font-size:10px; border-radius:4px; background:var(--button-bg); color:var(--text-color); border:1px solid var(--primary-color);">
+          <option value="enhanced">Smart</option>
+          <option value="basic">Basic</option>
+          <option value="adaptive">Adaptive</option>
+        </select>
+        <button id="recalibrate" style="margin-left:8px; padding:4px 8px; font-size:9px;" title="Recalibrate timing">⚡</button>
+      </div>
       <div class="playlist" id="playlist"></div>
     </div>
   </div>
 
   <!-- Start overlay -->
   <div id="startOverlay">
-    <div class="card" style="position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.9);z-index:999;">
+    <div class="card" style="position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.9);z-index:9999;">
       <div style="text-align:center;">
-        <h2 style="color:#ff69b4;margin-bottom:15px;">Click to Start Bible Player</h2>
+        <h2 style="color:var(--accent-color);margin-bottom:15px;">Click to Start Bible Player</h2>
         <button id="startBtn">Start Playing</button>
       </div>
     </div>
   </div>
 
   <script src="renderer.js"></script>
+  
+  <!-- UI/UX Enhancement Script -->
+  <script>
+    // Color customization functionality
+    function toggleColorPanel() {
+      const panel = document.getElementById('colorPanel');
+      const button = document.getElementById('toggleColors');
+      if (panel.classList.contains('visible')) {
+        panel.classList.remove('visible');
+        button.style.display = 'block';
+      } else {
+        panel.classList.add('visible');
+        button.style.display = 'none';
+      }
+    }
+    
+    function updateColors() {
+      const root = document.documentElement;
+      const primaryColor = document.getElementById('primaryColor').value;
+      const accentColor = document.getElementById('accentColor').value;
+      const bgOpacity = document.getElementById('backgroundOpacity').value / 100;
+      const containerOpacity = document.getElementById('containerOpacity').value / 100;
+      
+      // Convert hex to rgba for transparency
+      function hexToRgba(hex, alpha) {
+        const r = parseInt(hex.slice(1, 3), 16);
+        const g = parseInt(hex.slice(3, 5), 16);
+        const b = parseInt(hex.slice(5, 7), 16);
+        return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+      }
+      
+      root.style.setProperty('--primary-color', hexToRgba(primaryColor, 0.8));
+      root.style.setProperty('--accent-color', accentColor);
+      root.style.setProperty('--overlay-color', `rgba(0,0,0,${bgOpacity})`);
+      root.style.setProperty('--container-bg', `rgba(0,0,0,${containerOpacity})`);
+      
+      // Save preferences
+      localStorage.setItem('biblePlayer_colors', JSON.stringify({
+        primary: primaryColor,
+        accent: accentColor,
+        bgOpacity: bgOpacity,
+        containerOpacity: containerOpacity
+      }));
+    }
+    
+    function resetColors() {
+      document.getElementById('primaryColor').value = '#f6edf1';
+      document.getElementById('accentColor').value = '#ff69b4';
+      document.getElementById('backgroundOpacity').value = 55;
+      document.getElementById('containerOpacity').value = 75;
+      updateColors();
+      localStorage.removeItem('biblePlayer_colors');
+    }
+    
+    function loadSavedColors() {
+      const saved = localStorage.getItem('biblePlayer_colors');
+      if (saved) {
+        const colors = JSON.parse(saved);
+        document.getElementById('primaryColor').value = colors.primary || '#f6edf1';
+        document.getElementById('accentColor').value = colors.accent || '#ff69b4';
+        document.getElementById('backgroundOpacity').value = colors.bgOpacity * 100 || 55;
+        document.getElementById('containerOpacity').value = colors.containerOpacity * 100 || 75;
+        updateColors();
+      }
+    }
+    
+    // Enhanced container resizing with mobile support
+    function makeContainerResizable() {
+      const container = document.getElementById('container');
+      let isResizing = false;
+      
+      // Detect mobile devices
+      const isMobile = window.matchMedia('(max-width: 768px)').matches || 
+                       'ontouchstart' in window;
+      
+      // Improve resize functionality
+      const observer = new ResizeObserver(entries => {
+        for (let entry of entries) {
+          const { width, height } = entry.contentRect;
+          // Maintain circular shape during resize
+          if (Math.abs(width - height) > 50) {
+            const size = Math.min(width, height);
+            container.style.width = size + 'px';
+            container.style.height = size + 'px';
+          }
+        }
+      });
+      
+      // Only enable resize observer on desktop to avoid mobile conflicts
+      if (!isMobile) {
+        observer.observe(container);
+      }
+    }
+
+    // Mobile-specific touch handling
+    function initMobileBehavior() {
+      const isMobile = window.matchMedia('(max-width: 768px)').matches || 
+                       'ontouchstart' in window;
+      
+      if (isMobile) {
+        // Disable resize on mobile
+        const container = document.getElementById('container');
+        container.style.resize = 'none';
+        
+        // Add touch-friendly collapsed state behavior
+        let touchStartTime = 0;
+        
+        container.addEventListener('touchstart', (e) => {
+          touchStartTime = Date.now();
+        });
+        
+        container.addEventListener('touchend', (e) => {
+          const touchDuration = Date.now() - touchStartTime;
+          
+          // Quick tap on collapsed state expands it
+          if (container.classList.contains('collapsed') && touchDuration < 300) {
+            e.preventDefault();
+            container.classList.remove('collapsed');
+            updateCollapseButton();
+          }
+        });
+      }
+    }
+    
+    // Event listeners
+    document.getElementById('toggleColors').addEventListener('click', toggleColorPanel);
+    document.getElementById('primaryColor').addEventListener('input', updateColors);
+    document.getElementById('accentColor').addEventListener('input', updateColors);
+    document.getElementById('backgroundOpacity').addEventListener('input', updateColors);
+    document.getElementById('containerOpacity').addEventListener('input', updateColors);
+    
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      loadSavedColors();
+      makeContainerResizable();
+      initMobileBehavior();
+    });
+
+    // Handle orientation changes on mobile
+    window.addEventListener('orientationchange', () => {
+      setTimeout(() => {
+        const container = document.getElementById('container');
+        // Recenter container after orientation change
+        container.style.left = '50%';
+        container.style.top = '50%';
+        container.style.transform = 'translate(-50%, -50%)';
+      }, 100);
+    });
+
+    // Prevent zoom on mobile when double tapping controls
+    document.addEventListener('touchend', (e) => {
+      const isControlElement = ['BUTTON', 'INPUT', 'SELECT', 'LABEL'].includes(e.target.tagName);
+      if (isControlElement) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+  </script>
 </body>
 </html>
